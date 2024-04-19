@@ -99,7 +99,4 @@ Emeritus:
 [![contributors](https://contributors-img.web.app/image?repo=open-telemetry/opentelemetry-demo)](https://github.com/open-telemetry/opentelemetry-demo/graphs/contributors)
 
 [docs]: https://opentelemetry.io/docs/demo/
-<<<<<<< HEAD
 # CD-AdvancedDigitalIQ
-=======
->>>>>>> 1a38e439684c06a3f6744fad2f05b5a10c8c7440

@@ -16,10 +16,6 @@ static_resources:
                 codec_type: AUTO
                 stat_prefix: ingress_http
                 tracing:
-<<<<<<< HEAD
-=======
-                  spawn_upstream_span: true
->>>>>>> 1a38e439684c06a3f6744fad2f05b5a10c8c7440
                   provider:
                     name: envoy.tracers.opentelemetry
                     typed_config:
@@ -27,17 +23,8 @@ static_resources:
                       grpc_service:
                         envoy_grpc:
                           cluster_name: opentelemetry_collector_grpc
-<<<<<<< HEAD
                         timeout: 1s
                       service_name: frontend-proxy
-=======
-                        timeout: 0.250s
-                      service_name: frontend-proxy
-                      resource_detectors:
-                        - name: envoy.tracers.opentelemetry.resource_detectors.environment
-                          typed_config:
-                            "@type": type.googleapis.com/envoy.extensions.tracers.opentelemetry.resource_detectors.v3.EnvironmentResourceDetectorConfig
->>>>>>> 1a38e439684c06a3f6744fad2f05b5a10c8c7440
                 route_config:
                   name: local_route
                   virtual_hosts:
@@ -45,17 +32,11 @@ static_resources:
                       domains:
                         - "*"
                       routes:
-<<<<<<< HEAD
                         - match: { prefix: "/feature" }
                           route: { cluster: featureflag, prefix_rewrite: "/" }
                         - match: { prefix: "/loadgen" }
                           route: { cluster: loadgen, prefix_rewrite: "/" }
                         - match: { prefix: "/oltp-http/" }
-=======
-                        - match: { prefix: "/loadgen" }
-                          route: { cluster: loadgen, prefix_rewrite: "/" }
-                        - match: { prefix: "/otlp-http/" }
->>>>>>> 1a38e439684c06a3f6744fad2f05b5a10c8c7440
                           route: { cluster: opentelemetry_collector_http, prefix_rewrite: "/" }
                         - match: { prefix: "/jaeger" }
                           route: { cluster: jaeger }
@@ -84,13 +65,8 @@ static_resources:
               - endpoint:
                   address:
                     socket_address:
-<<<<<<< HEAD
                       address: 'opentelemetry-demo-otelcol'
                       port_value: "4317"
-=======
-                      address: ${OTEL_COLLECTOR_HOST}
-                      port_value: ${OTEL_COLLECTOR_PORT_GRPC}
->>>>>>> 1a38e439684c06a3f6744fad2f05b5a10c8c7440
     - name: opentelemetry_collector_http
       type: STRICT_DNS
       lb_policy: ROUND_ROBIN
@@ -101,13 +77,8 @@ static_resources:
               - endpoint:
                   address:
                     socket_address:
-<<<<<<< HEAD
                       address: 'opentelemetry-demo-otelcol'
                       port_value: "4318"
-=======
-                      address: ${OTEL_COLLECTOR_HOST}
-                      port_value: ${OTEL_COLLECTOR_PORT_HTTP}
->>>>>>> 1a38e439684c06a3f6744fad2f05b5a10c8c7440
     - name: frontend
       type: STRICT_DNS
       lb_policy: ROUND_ROBIN
@@ -118,7 +89,6 @@ static_resources:
               - endpoint:
                   address:
                     socket_address:
-<<<<<<< HEAD
                       address: 'opentelemetry-demo-frontend'
                       port_value: "8080"
     - name: featureflag
@@ -133,10 +103,6 @@ static_resources:
                     socket_address:
                       address: 'opentelemetry-demo-featureflagservice'
                       port_value: "8081"
-=======
-                      address: ${FRONTEND_HOST}
-                      port_value: ${FRONTEND_PORT}
->>>>>>> 1a38e439684c06a3f6744fad2f05b5a10c8c7440
     - name: loadgen
       type: STRICT_DNS
       lb_policy: ROUND_ROBIN
@@ -147,13 +113,8 @@ static_resources:
               - endpoint:
                   address:
                     socket_address:
-<<<<<<< HEAD
                       address: 'opentelemetry-demo-loadgenerator'
                       port_value: "8089"
-=======
-                      address: ${LOCUST_WEB_HOST}
-                      port_value: ${LOCUST_WEB_PORT}
->>>>>>> 1a38e439684c06a3f6744fad2f05b5a10c8c7440
     - name: grafana
       type: STRICT_DNS
       lb_policy: ROUND_ROBIN
@@ -164,13 +125,8 @@ static_resources:
               - endpoint:
                   address:
                     socket_address:
-<<<<<<< HEAD
                       address: 'opentelemetry-demo-grafana'
                       port_value: "16686"
-=======
-                      address: ${GRAFANA_SERVICE_HOST}
-                      port_value: ${GRAFANA_SERVICE_PORT}
->>>>>>> 1a38e439684c06a3f6744fad2f05b5a10c8c7440
     - name: jaeger
       type: STRICT_DNS
       lb_policy: ROUND_ROBIN
@@ -181,13 +137,8 @@ static_resources:
               - endpoint:
                   address:
                     socket_address:
-<<<<<<< HEAD
                       address: 'opentelemetry-demo-jaeger-query'
                       port_value: "16686"
-=======
-                      address: ${JAEGER_SERVICE_HOST}
-                      port_value: ${JAEGER_SERVICE_PORT}
->>>>>>> 1a38e439684c06a3f6744fad2f05b5a10c8c7440
 admin:
   address:
     socket_address:
@@ -201,8 +152,4 @@ layered_runtime:
           resource_limits:
             listener:
               example_listener_name:
-<<<<<<< HEAD
                 connection_limit: 10000
-=======
-                connection_limit: 10000
->>>>>>> 1a38e439684c06a3f6744fad2f05b5a10c8c7440
