@@ -7,7 +7,7 @@ test_deploy_with_agent:
     entrypoint: ['']
   script:
     #- kubectl config get-contexts
-    - kubectl config use-context d7769/advanceddigitalq:k8s-agent
-    - kubectl apply -f  ./kubernetes/opentelemetry-demo.yaml   -n otel-demo
-    - kubectl get pods -n otel-demo
+    - kubectl config use-context d7769/adv_o11y_eos:k8s-agent-o11y
+    - kubectl apply -f  ./kubernetes/opentelemetry-demo-updated.yaml   -n otel-demo-o11y
+    - kubectl get pods -n otel-demo-o11y
   when: manual

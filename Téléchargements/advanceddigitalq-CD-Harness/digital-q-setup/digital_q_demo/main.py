@@ -7,7 +7,7 @@ class MyChart(Chart):
     def __init__(self, scope: Construct, id: str):
         super().__init__(scope, id)
 
-        otel_demo = Helm(self, "otel-demo",
+        otel_demo = Helm(self, "otel-demo-o11y",
                     chart= "open-telemetry/opentelemetry-demo")
 
 
